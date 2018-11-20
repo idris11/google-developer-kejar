@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Google Developer Kejar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:,300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" crossorigin="" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="" />
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="container">
+        <div class='menu'>
+
+        </div>
+        <div class='header'>Header</div>
+        <div class='sidebar'>
+            <div class="logo">
+                <img class="image" src="images/logo.jpg" alt="Logo">
+            </div>
+            <div class="information">
+                <h3>Idris</h3>
+            </div>
+        </div>
+        <div class='konten'>
+            <div class='subkonten'>
+                <h3>Kalkulator</h3>
+                <div class="form">
+                        <label>First Number</label>
+                        <input type="number" id="first" placeholder="First Number" >
+                        <label>Operation</label>
+                        <select id="operation">
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                            <option value="*">*</option>
+                            <option value="/">/</option>
+                        </select>
+                        <label>Second Number</label>
+                        <input type="number" id="second" placeholder="Second Number">
+                        <input type="submit" value="Submit" onclick="process()">
+                        <label>Result</label>
+                        <input type="number" id="result" placeholder="Result" disabled>
+                </div>
+            </div>
+            <div class='subkonten map'>
+                <div id='map' style='width: 100%; height: 300px;'></div>
+            </div>
+            <div class='subkonten'>Profil Saya</div>
+        </div>
+        <div class='footer'>Footer</div>
+        
+    </div>
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+<script>
+    let mymap = {}
+    function initMap(){
+        mymap = L.map('map').setView([-6.173869, 106.7834753], 16);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', { attribution: "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>,Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>", maxZoom: 20, id: 'mapbox.streets', accessToken: 'pk.eyJ1IjoiZmVsaXh3aW5hdGEiLCJhIjoiY2puOXlsdXprMDZ4MjN3bjh0MWZxa2pxcCJ9.etmhC8K9TghVsUeUcmpUjQ' }).addTo(mymap);
+
+        let places = [
+            { "lokasi": [-6.173869, 106.7834753], "restoran": "Sederhana SA" },
+            { "lokasi": [-6.1730063, 106.7834539], "restoran": "HokBen Tanjung Duren" },
+            { "lokasi": [-6.173195, 106.7835947], "restoran": "KFC TANJUNG DUREN" },
+            { "lokasi": [-6.173372, 106.7834901], "restoran": "Pempek Garuda Putra" },
+            { "lokasi": [-6.1737092, 106.7850636], "restoran": "Mastercheese pizza" }
+        ];
+
+        for (var p of places) {
+            var marker = L.marker(p.lokasi).addTo(mymap).bindPopup(p.restoran);
+        }
+
+    }
+
+    initMap()
+
+    function process(){
+        let firstNumber = document.getElementById("first").value
+        let secondNumber = document.getElementById("second").value
+        let symbol = document.getElementById("operation")
+        let fs = symbol.options[symbol.selectedIndex].value;
+        if (validate(firstNumber,secondNumber)) {
+            let tempTotal = firstNumber + fs + secondNumber
+            let total = eval(tempTotal)
+            console.log(total)
+            document.getElementById("result").value = total
+        } 
+    }
+    function validate(firstNumber,secondNumber){
+        if (firstNumber == '') {
+            document.getElementById("first").focus()
+            return false
+        }
+        if (secondNumber == '') {
+            document.getElementById("second").focus()
+            return false
+        }
+
+        return true
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    color: #455a64;
+    background: #F6FAFD;
+}
+.container {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 50px 50px auto 50px;
+}
+.menu {
+    grid-column: 1/-1;
+    box-shadow: 0 2px 10px rgba(36, 42, 51, 0.1);
+    height: 100%;
+    background: #fff;
+}
+.header {
+    grid-column: 1/-1;
+}
+.sidebar {
+    grid-column: 1/2;
+}
+.konten {
+    display:grid;
+    grid-gap: 4px;
+    grid-column: 2/-1;
+}
+.subkonten{
+    grid-column: 1/-1;
+}
+.map{
+    padding: 10px;
+}
+#map{
+    border-radius: 4px;
+}
+.footer {
+    grid-column: 1/-1;
+}
+.image{
+    display: block;
+    margin: 0 auto 0 auto;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+}
+.logo{
+    padding: 0;
+}
+.information{
+    height: auto;
+}
+
+.information h3{
+    text-align: center;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    background-color: #02a8f3;
+    color: white;
+    display: inline;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #66b1ff;
+}
+
+.form{
+    border-radius: 5px;
+    padding: 0 10px 0 10px;
+}
